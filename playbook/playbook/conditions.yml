@@ -1,0 +1,14 @@
+--- # when playbook 
+- hosts: node1
+  connection: ssh
+  vars: 
+    playbook_type: conditionalexample
+  vars_files:
+    - /root/playbooks/conf/webdefaults.yml
+  tasks:
+    - name: install apache based on distribution
+      command: apt-get -y install apache2
+      when: ansible_os_family == "Debain"
+    - name: install apache based on distribution
+      command: yum -y install httpd
+      when: ansible_os_family == "RedHat"

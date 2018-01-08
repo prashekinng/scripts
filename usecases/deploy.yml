@@ -1,0 +1,24 @@
+- hosts: node1
+  user: root
+  become_method: yes
+  connection: ssh
+  gather_facts: yes
+  vars:
+    apache_pkg: httpd
+    distribution: "{{ redhat }}"
+    apache_version: 2.4
+    apache_dir: /var/www/sample
+    apache_fqdn: node_01
+  tasks:
+    - name: install web server package
+      yum: pkg={{ apache_pkg }} state=latest
+    - name: create the web server dir
+      file: path={{ apache_dir }} state=directory mode=0755
+    - name: copying code from repository
+      git: repo=https://github.com/s-macke/VoxelSpace.git dest={{ apache_dir }} clone=yes
+      notify:
+        - RESTART HTTPD
+  handlers:
+    - name: RESTART HTTPD
+      service: name={{ apache_pkg }} state=started
+   

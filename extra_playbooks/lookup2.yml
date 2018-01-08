@@ -1,0 +1,8 @@
+--- # lookup
+- hosts: node1
+  user: root
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - debug: msg=" looking for the name wayne {{ lookup('csvfile','Wayne file=lookup.csv delimeter=, default=NOMATCH') }}

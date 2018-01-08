@@ -1,0 +1,4 @@
+- hosts: server
+  gather_facts: no
+  tasks:
+    - git: repo=https://github.com/rnaredla001/dev dest=/root/git 

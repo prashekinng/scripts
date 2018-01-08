@@ -1,0 +1,11 @@
+--- # pause module
+- hosts: server
+  gather_facts: no
+  tasks:
+    - name: install httpd
+      action: yum name=httpd state=installed
+    - name: pausing
+      pause:
+        prompt: "make sure installation is completed..."
+    - name: verify wget instaalled
+      action: yum name=wget state=present

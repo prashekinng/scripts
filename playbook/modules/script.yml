@@ -1,0 +1,5 @@
+- hosts: node1
+  gather_facts: no
+  tasks:
+    - script: /root/playbooks/modules/myscript.sh
+      ignore_errors: yes

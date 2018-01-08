@@ -1,0 +1,23 @@
+- hosts: node1
+  user: root
+  connection: ssh
+  gather_facts: no
+  vars:
+    author_name: reddy
+    
+  vars_files:
+    - /root/playbooks/vars.yml
+    - /root/playbooks/conf/copyright.yml
+    - /root/playbooks/conf/webdefaults.yml
+  vars_prompt:
+    - name: web_domain
+      prompt: web domain
+
+  tasks:
+    - name: Install httpd on node1 and node2
+      action: yum name={{ pkg_httpd }} state=installed
+      
+      notify: START HTTPD
+  handlers:
+  - name: START HTTPD
+    service: name={{ httpd }} state=restarted

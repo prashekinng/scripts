@@ -1,0 +1,7 @@
+- hosts: node1
+  user: root
+  become_method: yes
+  gather_facts: no
+  tasks:
+    - name: copy from src to dest
+      action: copy src=/root/node1.yml dest=/root/playbooks/modules

@@ -1,0 +1,5 @@
+- hosts: node1
+  gather_facts: no
+  tasks:
+    - name: group module
+      group: name=devops state=absent 

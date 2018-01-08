@@ -1,0 +1,5 @@
+- hosts: node1
+  gather_facts: no
+  tasks: 
+    - name: add cron job for root user
+      cron: name="list files" minute="0" hour="1" job=" /etc > /root/etc.log"

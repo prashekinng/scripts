@@ -1,0 +1,9 @@
+- hosts: node1
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: does a file directory exit or not
+      stat: path=/root/abc
+      register: result
+    - debug: msg="path exists"
+      when: result.stat.isdir is defined

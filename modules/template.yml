@@ -1,0 +1,10 @@
+- hosts: node1
+  gather_facts: yes
+  vars: 
+    userName: root
+    userPassword: password1
+    connectionType: SFTP
+  tasks:
+    - name: installthe conf file customized
+      template: src=test.conf.j2 dest=/root/test.conf owner=root
+   

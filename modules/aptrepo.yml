@@ -1,0 +1,7 @@
+- hosts: node1
+  gather_facts: no 
+  tasks:
+    - name: install
+      apt: pkg=python-apt state=latest
+    - name: add the google repo for the ubuntu
+      

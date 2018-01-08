@@ -1,0 +1,3 @@
+- name: install httpd
+  apt: pkg= {{ debain_pkg }} state=installed
+  

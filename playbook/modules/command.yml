@@ -1,0 +1,7 @@
+- hosts: server
+  user: root
+  become_method: yes
+  gather_facts: no
+  tasks: 
+    - name: check python installed
+      command: mkdir /root/playbooks/modules/test

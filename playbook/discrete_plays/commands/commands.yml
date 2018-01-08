@@ -1,0 +1,2 @@
+- name: make sure wget is installed
+  raw: yum list installed | grep wget > /root/wget.log

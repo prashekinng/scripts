@@ -1,0 +1,6 @@
+- name: requried wget installation
+  yum: pkg=wget state=installed
+  tags: wget
+- name: install httpd
+  yum: pkg=httpd state=installed
+  tags: httpd

@@ -1,0 +1,9 @@
+- hosts: node1
+  tasks: 
+    - name: mail module
+      mail: 
+        host="localhost"
+        port=25
+        to="root"
+        subject="our host finished deploying"
+        body=" system called {{ ansible_fqdn }} has been successfully set up "

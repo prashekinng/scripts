@@ -1,0 +1,11 @@
+--- # myfirst play book
+- hosts: node1
+  become_method: root
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+  - name: install httpd
+    yum: pkg=httpd state=installed
+  - name: restart httpd
+    command: systemctl restart httpd.service

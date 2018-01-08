@@ -1,0 +1,14 @@
+- hosts: node1
+  user: root
+  sudo: yes
+  connection: ssh
+  gather_facts: yes
+  tasks: 
+    - name: install apache
+      action: yum pkg=httpd state=installed
+    - name: start httpd
+      service: name=httpd state=started
+    - name: enabled httpd after restart
+      service: name=httpd enabled=yes
+
+ 

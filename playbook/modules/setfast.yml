@@ -1,0 +1,10 @@
+- hosts: node1
+  gather_facts: no
+  vars:
+    playbook_version: 1.0
+  tasks: 
+    - name: local variable display
+      set_fact:
+        singlefact: SOMETHING
+    - debug: msg={{ playbook_version }}
+    - debug: msg={{ singlefact }}

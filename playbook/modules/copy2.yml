@@ -1,0 +1,6 @@
+- hosts: server
+  tasks: 
+    - copy: 
+      src: /root/node1.yml
+      dest: /root/playbooks/modules
+    

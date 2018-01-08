@@ -1,0 +1,4 @@
+- hosts: node1
+  tasks:
+    - name: geturl
+      get_url: url=http://192.168.0.15/index.ini dest=/root/index.ini

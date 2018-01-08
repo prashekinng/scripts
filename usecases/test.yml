@@ -1,0 +1,6 @@
+- hosts: node1
+  tasks:
+    - git: 
+        repo: 'https://github.com/rnaredla001/devcode.git'
+        dest: /root/test
+        clone: yes

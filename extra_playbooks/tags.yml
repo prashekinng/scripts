@@ -1,0 +1,14 @@
+- hosts: server
+  gather_facts: no
+  tasks:
+    - name: install
+      yum: pkg={{ item }} state=installed
+      with_items:
+        - wget
+        - httpd
+      tags:
+        - packages
+    - name: verify the wget installed
+      raw: yum list installed | grep wget > /root/wget.log
+      tags:
+        - verification

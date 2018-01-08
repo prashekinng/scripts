@@ -1,0 +1,14 @@
+--- # prompt.yml file
+- hosts: node1
+  user: root
+  gather_facts: no 
+  vars:
+    author_name: reddy
+  vars_prompt:
+    - name: pkgtoinstall
+      prompt: install the packege??
+      default: wget
+      private: yes
+  tasks:
+    - name: install
+      yum: pkg={{ pkgtoinstall }} state=installed

@@ -1,0 +1,11 @@
+- hosts: all
+  user: root
+  sudo: yes
+  connection: ssh
+  gather_facts: no
+  tasks:
+    - name: run the date command
+      raw: /usr/bin/date >> /root/date.txt
+    - name: using the runonce concept
+      raw: ls -la /var >> /root/listvar.txt
+      run_once: true

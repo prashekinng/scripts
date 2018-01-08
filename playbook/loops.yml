@@ -1,0 +1,11 @@
+--- # loop
+- hosts: server
+  user: root
+  connection: ssh
+  gather_facts: no
+  tasks: 
+    - name: add list of user
+      user: name={{ item }} state=present
+      with_items:
+        - user2
+        - user3

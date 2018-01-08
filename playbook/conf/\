@@ -1,0 +1,6 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomai
+
+192.168.0.17 control_server
+192.168.0.13 node_01
+192.168.0.21 node_02

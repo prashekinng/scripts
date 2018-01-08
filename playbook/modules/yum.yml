@@ -1,0 +1,9 @@
+- hosts: server
+  gather_facts: no
+  tasks: 
+    - name: install httpd
+      action: yum pkg=httpd state=installed
+    - name: remove wget
+      action: yum name=wget state=absent
+    - name: yum upgrade
+      action: yum name=* state=latest

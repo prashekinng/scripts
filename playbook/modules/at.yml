@@ -1,0 +1,5 @@
+- hosts: node1
+  gather_facts: no
+  tasks:
+    - name: running at module
+      at: command="ls -la /etc > /root/etc.log" count=1 units="minutes"

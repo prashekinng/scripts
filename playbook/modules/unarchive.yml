@@ -1,0 +1,6 @@
+- hosts: node1
+  gather_facts: no
+  tasks: 
+    - name: unarchive
+      unarchive: src=/root/etc.tar.gz dest=/root/unarchive
+ 

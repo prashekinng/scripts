@@ -1,0 +1,5 @@
+- hosts: node1
+  gather_facts: no
+  tasks: 
+    - name: raw module
+      raw: /usr/bin/uptime >> /root/uptime.log

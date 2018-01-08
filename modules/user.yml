@@ -1,0 +1,5 @@
+- hosts: node1
+  gather_facts: no
+  tasks: 
+    - name: add the user phani t0 wheel group
+      user: name=phani group=wheel 

@@ -1,0 +1,12 @@
+ - hosts: server
+   vars_files:
+     - /root/playbooks/conf/webdefaults.yml
+   vars_prompt:
+     - name: pkg_name
+       prompt: which package to install
+   tasks:
+     - name: pkg to install
+       action: yum pkg={{ pkg_name }} state=installed
+   tasks:
+     - name: install httpd package
+       action: yum pkg={{ pkg_httpd }} state=installed

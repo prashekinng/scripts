@@ -1,0 +1,4 @@
+- hosts: node1,node2
+  tasks:
+  - name: Install httpd on node1 and node2
+     yum: name=httpd state-installed 

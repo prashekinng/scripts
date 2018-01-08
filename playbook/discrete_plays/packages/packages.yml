@@ -1,0 +1,5 @@
+- name: install wget
+  yum: pkg=wget state=installed
+- name: install httpd
+  yum: pkg=httpd state=installed
+  notify: RESTART HTTPD

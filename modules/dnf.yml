@@ -1,0 +1,6 @@
+- hosts: node1
+  gather_facts: no
+  tasks:
+    - name: install wget
+      dnf: name=httpd state=installed
+    
