@@ -1,0 +1,15 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks: 
+    - name: creating a snapshot
+      ec2_snapshot: 
+        region: us-east-2
+        instance_id: i-0eb2a7abd155821e4 
+        device_name: /dev/sda1
+        description: ec2 volume snap
+        wait: no
+        snapshot_tags:
+          Name: My_Snap
+      register: snapshot
+    - debug: msg={{snapshot}}

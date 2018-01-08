@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+  remote_user: root
+  gather_facts: no
+  vars_files: 
+    - files/login.yml
+  tasks: 
+    - name: copying an ami from one region to another
+      ec2_ami_copy:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        source_region: us-east-2
+        region: us-west-2
+        source_image_id: ami-7d210818
+        wait: no
+        name: copyami
+        tags: 
+          Name: CopyAmi
+          Service: COPYAMI
+      register: instance

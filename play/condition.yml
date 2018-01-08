@@ -1,0 +1,8 @@
+- hosts: server
+  tasks:
+    - name: install app packages
+      command: yum -y install httpd
+      when: ansible_os_family == "RedHat"
+    - name: install app packages
+      command: apt-get -y install apache2
+      when: ansible_os_family == "Debian"

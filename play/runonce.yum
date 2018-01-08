@@ -1,0 +1,5 @@
+- hosts: node_01
+  tasks: 
+    - name: install wget
+      yum: pkg=wget state=installed
+      run_once: true

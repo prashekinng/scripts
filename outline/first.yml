@@ -1,0 +1,29 @@
+- hosts: server
+  user: root
+  become_user: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    author_name: reddy
+    pkg_name: wget
+  vars_files:
+    - vat.txt
+  tasks:
+    - name: installing multiple packages
+      yum: pkg={{ item }} state=installed
+      with_items:
+        - httpd
+        - man
+        - wget
+        - net-tools
+      notify: RESTART HTTPD
+      register: result
+    - debug: msg={{ result }}
+    - name: open 80 port
+      command: firewall-cmd --zone=public --add-port=80/tcp
+      run_once: true
+      register: result
+    - debug: msg={{ result }}
+  handlers:
+    - name: RESTART HTTPD
+      service: name=httpd state=started enabled=yes

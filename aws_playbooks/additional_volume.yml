@@ -1,0 +1,11 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: adding a volume to running instance 
+      ec2_vol:
+        region: us-east-2
+        instance: i-0eb2a7abd155821e4
+        id: vol-0dd5a0207d3728724
+        device_name: /dev/sdb
+        delete_on_termination: yes

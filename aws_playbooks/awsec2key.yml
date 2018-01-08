@@ -1,0 +1,14 @@
+- hosts: localhost
+  remote_user: root
+  connection: local
+  gather_facts: no
+  vars_files:
+    - files/awscredentials.yml
+  tasks:
+    - name: cerate new keypair
+      ec2_key:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        name: mynewkey
+        region: us-east-2
+        state: absent

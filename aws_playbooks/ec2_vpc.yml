@@ -1,0 +1,13 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: about vpc
+      ec2_vpc:
+        region: us-east-2
+        cidr_block: 192.168.1.1/24
+        resource_tags: { " Environment": " dev " }
+        state: present
+        resource_tags:
+          Name: Custom_Vpc
+      register: vpcblock

@@ -1,0 +1,26 @@
+- hosts: localhost
+  remote_user: root
+  become: yes
+  connection: local
+  gather_facts: no
+  vars_files:
+    - files/login.yml
+  tasks:
+    - name: basic provisioning of ami from instance
+      ec2_ami:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: us-east-2
+        instance_id: i-032d19b7125cf9ba1
+        wait: no
+        name: newami
+        tags:
+          Name: NewAmi
+          Service: NEWAMI
+        device_mapping:
+          - device_name: /dev/sdb1
+            size: 5
+            delete_on_termination: true
+            volume_type: gp2
+      register: instance
+   

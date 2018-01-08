@@ -1,0 +1,13 @@
+- hosts: localhost
+  remote_user: root
+  become: yes
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: new ec2
+      ec2:
+        region: us-east-2
+        image: ami-cfdafaaa
+        instance_type: t2.micro
+        count: 1
+    

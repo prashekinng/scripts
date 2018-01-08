@@ -1,0 +1,12 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+   - name: adding tag to volume
+     ec2_tag:
+       region: us-east-2
+       resource: vol-05def5ded2b70263a
+       state: present
+       tags:
+         Name: Root_volume
+     register: voltags

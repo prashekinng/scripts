@@ -1,0 +1,7 @@
+- hosts: node1
+  tasks:
+    - name: install some packages
+      user: name={{ item }} state=present
+      with_items:
+        - wget
+        - phani

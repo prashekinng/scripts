@@ -1,0 +1,19 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: creating s3 bucket
+      s3:
+        region: us-east-2
+        bucket: reddy875bucket
+        mode: create
+    - name: creating s3 object 
+      s3:
+        region: us-east-2
+        bucket: reddy875bucket
+        object: /playbook/files
+        src: /root/aws_playbooks/
+        mode: put
+      register: copy
+    - debug: msg={{copy}}
+

@@ -1,0 +1,10 @@
+- hosts: node1
+  gather_facts: no
+  vars_prompt: 
+    - name: pkg
+      prompt: which pkg to install
+      default: wget
+      private: no
+  tasks:
+    - name: install
+      yum: pkg={{ pkg }} state=installed

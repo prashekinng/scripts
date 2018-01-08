@@ -1,0 +1,36 @@
+--- # Deploy Apache to Aws
+- hosts: aws
+  connection: ssh
+  remote_user: ec2-user
+  become: yes
+  gather_facts: yes
+  tasks:
+    - name: update packages
+      yum: name=* state=latest
+    - name: Install HTTPD server
+      yum: name=httpd state=latest
+    - name: Deploy the static site to aws
+      copy: src=index.html dest=/var/www/html
+    - name: Restart Httpd
+      service: name=httpd state=restarted
+- hosts: localhost
+  connection: local
+  remote_user: root
+  gather_facts: no
+  tasks: 
+    - name: adding inbound outbound rules for 80
+      ec2_group:
+        region: us-east-2
+        name: test
+        description: custom_sec_group
+        vpc_id: vpc-721a051b
+        rules: 
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+        rules_egress:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0

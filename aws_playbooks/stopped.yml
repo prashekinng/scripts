@@ -1,0 +1,15 @@
+- hosts: localhost
+  remote_user: root
+  connection: local
+  gather_facts: no
+  vars_files:
+    - files/login.yml
+  tasks:
+    - name: stop the running instance
+      ec2:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}" 
+        region: us-east-2
+        image: ami-cfdafaaa
+        instance_ids: i-0e90d55986bfe9d47
+        state: absent

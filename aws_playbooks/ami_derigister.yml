@@ -1,0 +1,16 @@
+- hosts: localhost
+  remote_user: root
+  become: yes
+  connection: local
+  gather_facts: no
+  vars_files:
+    - files/login.yml
+  tasks:
+    - name: basic provisioning of ami from instance
+      ec2_ami:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: us-east-2
+        image_id: ami-962e07f3
+        delete_snapshot: true
+        state: absent 

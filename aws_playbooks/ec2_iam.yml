@@ -1,0 +1,17 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: create two iam users
+      iam:
+        region: us-east-2
+        iam_type: user
+        name: "{{ item }}" 
+        state: absent
+        password: "szumuqiz"
+        access_key_state: create
+      with_items:
+        - dev
+        - test
+      register: iam
+    - debug: msg={{iam}} 

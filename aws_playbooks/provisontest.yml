@@ -1,0 +1,15 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  vars_files:
+    - files/login.yml
+  tasks:
+    - name: launch ec2
+      ec2:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: us-east-2
+        image: ami-cfdafaaa
+        instance_type: t2.micro
+        count: 1
+    

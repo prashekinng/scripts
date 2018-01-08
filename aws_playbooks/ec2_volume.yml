@@ -1,0 +1,10 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: attaching an aditional volume
+      ec2_vol:
+        region: us-east-2
+        instance: i-0eb2a7abd155821e4
+        device_name: sdb
+        state: absent

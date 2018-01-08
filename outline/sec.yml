@@ -1,0 +1,16 @@
+- hosts: server
+  user: root
+  become_user: yes
+  connection: ssh
+  gather_facts: no
+  vars:
+    author_name: reddy
+    pkg_name: wget
+  vars_files:
+    - vat.txt
+  tasks:
+    - name: installing multiple packages
+      yum: pkg={{ pkg_httpd }} state=installed
+  handlers:
+    - name: RESTART HTTPD
+      service: name=httpd state=started enabled=yes

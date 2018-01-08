@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local 
+  gather_facts: no
+  tasks:
+    - name: basic security group 
+      ec2_group:
+        region: us-east-2
+        name: mysecuritygroup
+        description: this is custom sg
+        vpc_id: vpc-721a051b
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+        rules_egress:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0

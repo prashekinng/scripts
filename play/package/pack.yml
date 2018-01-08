@@ -1,0 +1,6 @@
+- name: install wget
+  yum: pkg=wget state=installed
+- name: install https
+  yum: pkg=httpd state=installed
+
+
