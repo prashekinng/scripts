@@ -1,0 +1,4 @@
+dependency_packages:
+  - httpd
+
+httpd_config: /etc/httpd/conf/httpd.conf

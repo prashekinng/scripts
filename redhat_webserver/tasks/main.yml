@@ -1,0 +1,21 @@
+- name: Install httpd and some dependency packages
+  yum: pkg="{{ item }}" state=installed
+  with_items:
+    - "{{ dependency_packages }}"
+  register: packages
+- debug: var=packages
+  tags:
+    - httpd
+- name: Ensuring https is started
+  service: name=httpd state=started enabled=yes
+- name: deploying sample html pages 
+  git: repo='https://github.com/rnaredla001/myhtml.git' dest=/var/www/html clone=yes
+- name: Setting 80 port
+  firewalld: zone=public state=enabled permanent=true port={{ httpd_Listen }}/tcp  
+- name: Restarting firewalld
+  service: name=firewalld state=restarted
+- name: Installing main configuration file
+  template: src=httpd.conf.j2 dest="{{ httpd_config }}" owner=root group=root 
+  notify: restart httpd
+
+
